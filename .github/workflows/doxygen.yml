@@ -1,1 +1,21 @@
+name: 📚 Generate Doxygen Documentation
 
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  generate_documentation:
+    name: 📚 Generate Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📚 Generate Documentation
+        run: doxygen Doxyfile
+
+      - name: 📦 Save Documentation Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: documentation
+          path: ./docs/html
