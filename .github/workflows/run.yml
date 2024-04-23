@@ -1,19 +1,25 @@
-name: 🚀 Run
+name: 🚀 Run Tests
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
-  run:
-    name: 🚀 Run
+  run_tests:
+    name: 🚀 Run Tests
     runs-on: ubuntu-latest
+
     steps:
       - name: 📥 Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v2
 
-      - name: 🚀 Run
-        shell: bash
+      - name: 🚀 Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: 🧪 Run Tests
         run: |
-          python3 main.py
+          python -m unittest discover
+
