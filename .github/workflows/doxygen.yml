@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: 📚 Install Doxygen
+        run: sudo apt-get install doxygen -y
+        
       - name: 📚 Generate Documentation
         run: doxygen Doxyfile
 
